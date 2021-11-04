@@ -19,8 +19,21 @@ public class Date {
 			throw new DateException("Date error: Day " + day + " of month " + this.month + " not valid");			
 		}
 		this.day = day;
-	}
-	
+    }
+    
+	public int getDay(){
+            return this.day;
+    }
+
+    public int getMonth(){
+        return this.month;
+    }
+
+    public int getYear(){
+        return this.year;
+    }
+
+    
 	public void setMonth (int month) throws DateException {
 		if ( month < 1 || month > 12) {
 			throw new DateException("Date error: Month " + month + " not valid");
@@ -58,58 +71,191 @@ public class Date {
 		}
 		
 		return numDays;
+    }
+    private int getDaysOfMonth(int month) {
+		int numDays;
+		
+		numDays = 0;
+		switch (month) {
+		case 1: //next
+		case 3: //next
+		case 5: //next
+		case 7: //next
+		case 8: //next
+		case 10: //next
+		case 12:
+			numDays = 31;
+			break;
+		case 4:
+		case 6:
+		case 9:
+		case 11:
+			numDays = 30;
+			break;
+		case 2:
+			numDays = 28;
+			break;			
+		}
+		
+		return numDays;
 	}
-    
-    boolean isSameDayIf(date){
+     //compara dia
+    public boolean isSameDayIf(Date fecha){
         boolean isSameDay = false;
-        if (this.day == date.getDay()){
+        if (this.day == fecha.getDay()){
             isSameDay = true;
         }
         return isSameDay;
     }
-
-    boolean isSameMonthIf(date){
+     //compara mes
+    public boolean isSameMonthIf(Date fecha){
         boolean isSameMonth = false;
-        if (this.month == date.getmonth()){
+        if (this.month == fecha.getMonth()){
             isSameMonth = true;
         } 
         return isSameMonth;
     }
-
-    boolean isSameYearIf(date){
+     //compara anio
+    public boolean isSameYearIf(Date fecha){
         boolean isSameYear = false;
-        if(this.year == date.getYear()){
+        if(this.year == fecha.getYear()){
             isSameYear = true;
         }
         return isSameYear;
     }
-
-    boolean isSameIf(date){
+     //compara fecha
+    public boolean isSameIf(Date fecha){
         boolean isSame = false;
-        if (isSameDay && isSameMonth && isSameYear){
+        if (isSameDay(fecha) && isSameMonth(fecha) && isSameYear(fecha)){
             isSame = true;
         }
         return isSame;
     }
-
-    boolean isSameDay(date){
-        return (this.day == date.getDay());
+     //compara dia
+    public boolean isSameDay(Date fecha){
+        return (this.day == fecha.getDay());
+    }
+     //compara mes
+    public boolean isSameMonth(Date fecha){
+        return (this.month == fecha.getMonth());
+    }
+     //compara anio
+    public boolean isSameYear(Date fecha){
+        return (this.year == fecha.getYear());
+    }
+     //compara fecha
+    public boolean isSame(Date fecha){
+        return (isSameDay(fecha) && isSameMonth(fecha) && isSameYear(fecha));
+    }
+     //extrae nombre del mes
+    public String monthName() throws DateException{
+        String monthName = "";
+        switch(this.month){
+            case 1:
+                monthName = "Enero";
+                break;
+            case 2:
+                monthName = "Febrero";             
+                break;
+            case 3:
+                monthName = "Marzo";   
+                break;
+            case 4:
+                monthName = "Abril";
+                break;
+            case 5:
+                monthName = "Mayo";    
+                break;
+            case 6:
+                monthName = "Junio";    
+                break;
+            case 7:
+                monthName = "Julio";    
+                break;  
+            case 8:
+                monthName = "Agosto";    
+                break;
+            case 9:
+                monthName = "Septiembre";    
+                break;
+            case 10:
+                monthName = "Octubre";    
+                break;  
+            case 11:
+                monthName = "Noviembre";    
+                break;
+            case 12:
+                monthName = "Diciembre";    
+                break;
+            default:
+                throw new DateException("Date error: Month " + month + " not valid");
+        } 
+        return monthName;
+    }
+    public boolean checkDay(){
+        boolean rightDay;
+        if(this.day<getDaysOfMonth()){
+            rightDay = true;
+        }else{
+            rightDay = false;
+        }
+        return rightDay;
     }
 
-    boolean isSameMonth(date){
-        return (this.month == date.getmonth());
-    }
-    
-    boolean isSameYear(date){
-        return (this.year == date.getYear());
+    public String seasonDate()throws DateException{
+        String seasonDate;
+        switch(this.month){
+            case 1:
+            case 2:
+            case 12:
+                seasonDate = "invierno";
+                break;
+            case 3:
+            case 4:
+            case 5:
+                seasonDate = "primavera";
+                break;
+            case 6:
+            case 7:
+            case 8:
+                seasonDate = "verano";
+                break;
+            case 9:
+            case 10:
+            case 11:
+                seasonDate = "otoño";
+                break;
+            default:
+                throw new DateException("Date error: Month " + month + " not valid");
+        }
+        return seasonDate;
     }
 
-    boolean isSame(date){
-        return (isSameDay && isSameMonth && isSameYear);
+    public void monthsLeft()throws DateException{//imprime los meses restantes hasta finalizar el anio
+
+        for (int i=this.month; i<=12; i++){
+            setMonth(i);
+            System.out.println(monthName());
+           
+        }
     }
+    public void daysLeft(){//imprime los dias restantes hasta final de mes 
+        System.out.println("los dias restantes son");
+        for(int i = this.day; i <= getDaysOfMonth(); i++){
+            System.out.println(i);
+        }
+    }
+    public void sameNDays() throws DateException{//imprime los meses con el mismo numero de dias 
+        //variable que recoge el numero de dias del mes introducido
+        int days = getDaysOfMonth();
 
-    String monthName(){
+        for(int i = 0;i < 12; i++){
 
+            setMonth(i+1);
+            if (days == getDaysOfMonth()){
+            System.out.println(monthName());
+            }
+        }
     }
 
 	public String toString() {
