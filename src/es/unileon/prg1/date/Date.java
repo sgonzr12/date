@@ -262,7 +262,7 @@ public class Date {
         }
     }
 
-    public void daysUntilYear()throws DateException{
+    public void daysUntilYear()throws DateException{//calcula los dias restantes del año
         int counter = 0, month = this.month;
         //cuenta los dias hata terminar el mes 
         counter = daysLeft();
@@ -278,7 +278,7 @@ public class Date {
     }
 
 
-     public void randomGenerate()throws DateException{
+     public void randomGenerate()throws DateException{//cuenrta los intentos hasta acertar la fecha dada de manera aleatoria
         boolean goal = false;
         int counter = 0;
         while (!goal){
@@ -296,7 +296,7 @@ public class Date {
         System.out.println("la fecha ha sido hacertada en "+ counter+ " intentos");
     } 
     
-    public void randomGenerateDo()throws DateException{
+    public void randomGenerateDo()throws DateException{//cuenrta los intentos hasta acertar la fecha dada de manera aleatoria usando do while
         boolean goal = false;
         int counter = 0;
         do{
@@ -313,6 +313,56 @@ public class Date {
         }while (!goal);
         System.out.println("la fecha ha sido hacertada en "+ counter+ " intentos");
     }
+
+    public void getDayWeek()throws DateException{
+        int nDaysMonth = 0, daysWeek;
+
+        System.out.println("introduce el dia de la semana del primer dia del año");
+        System.out.println("0=> domingo\t 1=> lunes\t 2=> martes\t 3=> miercoles\n 4=> jueves\t 5=> viernes\t 6=> sabado");
+        daysWeek = Teclado.readInteger();
+        
+        //throw new DateException("Date error: Day " + day + " of month " + this.month + " not valid");
+ 
+        for (int i = 1; i < this.month;i++) {
+            nDaysMonth += getDaysOfMonth(i);
+        }
+       
+        nDaysMonth += this.day;
+       
+        for (int i = 0; i < nDaysMonth - 1; i++) {
+            daysWeek++;
+            if (daysWeek == 7) {
+                daysWeek = 0;
+            }
+        }
+        switch(daysWeek){
+            case 0:
+                System.out.println("el dia de la semana de la fecha "+ toString()+ " es domingo");
+                break;
+            case 1:
+                System.out.println("el dia de la semana de la fecha "+ toString()+ " es lunes");
+                break;
+            case 2:
+                System.out.println("el dia de la semana de la fecha "+ toString()+ " es martes");
+                break;
+            case 3:
+                System.out.println("el dia de la semana de la fecha "+ toString()+ " es miercoles");
+                break;
+            case 4:
+                System.out.println("el dia de la semana de la fecha "+ toString()+ " es jueves");
+                break;
+            case 5:
+                System.out.println("el dia de la semana de la fecha "+ toString()+ " es viernes");
+                break;
+            case 6:
+                System.out.println("el dia de la semana de la fecha "+ toString()+ " es sabado");
+                break;
+            default:
+                throw new DateException("Date error: Day of the week " + daysWeek + " not valid");
+        }
+       
+    }
+
 	public String toString() {
 		return this.day + "/" + this.month + "/" + this.year;
 	}

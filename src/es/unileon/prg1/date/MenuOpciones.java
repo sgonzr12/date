@@ -86,6 +86,11 @@ public class MenuOpciones{
 
                 date1.randomGenerate();
                 date1.randomGenerateDo();
+            }else if(selector == 10){//calcula el dia de la semana de una fecha a partir del primer dia de la semana del año
+
+                System.out.println("introduce la fecha");
+                date1 = generateDate(); 
+                date1.getDayWeek();
             }
 
             else if (selector == 11) {
