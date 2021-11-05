@@ -231,19 +231,23 @@ public class Date {
         return seasonDate;
     }
 
-    public void monthsLeft()throws DateException{//imprime los meses restantes hasta finalizar el anio
+    public int monthsLeft()throws DateException{//imprime los meses restantes hasta finalizar el anio
 
+        int monthsLeft = 0;
         for (int i=this.month; i<=12; i++){
             setMonth(i);
-            System.out.println(monthName());
+            monthsLeft++;
            
         }
+        return monthsLeft;
     }
-    public void daysLeft(){//imprime los dias restantes hasta final de mes 
-        System.out.println("los dias restantes son");
+    public int daysLeft(){//imprime los dias restantes hasta final de mes 
+        int daysLeft = 0;
+        
         for(int i = this.day; i <= getDaysOfMonth(); i++){
-            System.out.println(i);
+            daysLeft++;
         }
+        return daysLeft;
     }
     public void sameNDays() throws DateException{//imprime los meses con el mismo numero de dias 
         //variable que recoge el numero de dias del mes introducido
@@ -258,6 +262,23 @@ public class Date {
         }
     }
 
+    public void randomGenerate()throws DateException{
+        boolean goal = false;
+        int counter = 0;
+        while (!goal){
+            int day = 0,month = 0, year = this.year;
+            day = (int)(Math.random()*getDaysOfMonth() +1);
+            month = (int)(Math.random()* 12+1);
+            Date randomDate = new Date(day, month, year);
+            if (isSame(randomDate)){
+                goal = true;
+            }else{
+                goal = false;
+            }
+            counter ++;
+        }
+        System.out.println("la fecha ha sido hacertada en "+ counter+ " intentos");
+    }
 	public String toString() {
 		return this.day + "/" + this.month + "/" + this.year;
 	}

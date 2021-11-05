@@ -59,19 +59,32 @@ public class MenuOpciones{
                 System.out.println("introduce la fecha");
                 date1 = generateDate();
 
-                date1.monthsLeft();
+                System.out.println("quedan "+ date1.monthsLeft()+ " meses para acbar el mes");
             }else if(selector == 6){//imprime los dias restantes hasta acabar el mes  
 
                 System.out.println("introduce la fecha");
                 date1 = generateDate();
 
-                date1.daysLeft();
+                
+                System.out.println("quedan "+ date1.daysLeft()+ " dias para acbar el mes");
             }else if(selector ==7){//imprime los meses con el mismo numero de dias que el introducido
 
                 System.out.println("introduce la fecha");
                 date1 = generateDate();
 
                 date1.sameNDays(); 
+            }else if (selector == 8){//imprime los dias restantes hasta finalizar el anio
+
+                System.out.println("introduce la fecha");
+                date1 = generateDate();
+
+
+            }else if (selector == 9){//imprime el numero de intentos hasta que genera aleatoriamente la misma fecha que introduciste 
+
+                System.out.println("introduce la fecha");
+                date1 = generateDate(); 
+
+                date1.randomGenerate();
             }
 
             else if (selector == 11) {
