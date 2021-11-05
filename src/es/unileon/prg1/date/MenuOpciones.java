@@ -91,10 +91,10 @@ public class MenuOpciones{
                 System.out.println("introduce la fecha");
                 date1 = generateDate(); 
                 date1.getDayWeek();
-            }
-
-            else if (selector == 11) {
+            }else if (selector == 11) {
                 exit = true;
+            }else{
+                throw new DateException("menu error: selector " + selector + " not valid");
             }
         }
     }

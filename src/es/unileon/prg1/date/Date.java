@@ -314,27 +314,31 @@ public class Date {
         System.out.println("la fecha ha sido hacertada en "+ counter+ " intentos");
     }
 
-    public void getDayWeek()throws DateException{
+    public void getDayWeek()throws DateException{//calcula el dia de la semana de una fecha a partir del primer dia del anio
         int nDaysMonth = 0, daysWeek;
-
+        //solicita al usuario el dia de la semana del primeer dia del anio
         System.out.println("introduce el dia de la semana del primer dia del año");
         System.out.println("0=> domingo\t 1=> lunes\t 2=> martes\t 3=> miercoles\n 4=> jueves\t 5=> viernes\t 6=> sabado");
         daysWeek = Teclado.readInteger();
-        
-        //throw new DateException("Date error: Day " + day + " of month " + this.month + " not valid");
- 
+        //comprueba que el dia introducido sea correcto
+        if (daysWeek<0||daysWeek>6){
+            throw new DateException("Date error: Day " + day + " of month " + this.month + " not valid");
+        }
+        // cuenta los dias transcurridos del anio
         for (int i = 1; i < this.month;i++) {
             nDaysMonth += getDaysOfMonth(i);
         }
        
         nDaysMonth += this.day;
-       
+       //recorre los dias transcurridos hasta el dia introducido
         for (int i = 0; i < nDaysMonth - 1; i++) {
             daysWeek++;
+            //si el dia de la semana llega al maximo lo reinicia a cero
             if (daysWeek == 7) {
                 daysWeek = 0;
             }
         }
+        //imprime el dia de la semana de la fecha solicitada
         switch(daysWeek){
             case 0:
                 System.out.println("el dia de la semana de la fecha "+ toString()+ " es domingo");
