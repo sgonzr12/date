@@ -78,7 +78,7 @@ public class MenuOpciones{
                 System.out.println("introduce la fecha");
                 date1 = generateDate();
 
-
+                date1.daysUntilYear();
             }else if (selector == 9){//imprime el numero de intentos hasta que genera aleatoriamente la misma fecha que introduciste 
 
                 System.out.println("introduce la fecha");

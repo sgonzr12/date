@@ -262,6 +262,22 @@ public class Date {
         }
     }
 
+    public void daysUntilYear()throws DateException{
+        int counter = 0, month = this.month;
+        //cuenta los dias hata terminar el mes 
+        counter = daysLeft();
+        //cuenta los dias de los meses restantes
+        for (; month<12;){
+            month += 1;
+            setMonth(month);
+            for(int i=0; i<getDaysOfMonth();i++){
+                counter++;
+            }
+        }
+        System.out.println("quedan "+ counter+ " dias hasta finalizar el año");
+    }
+
+
      public void randomGenerate()throws DateException{
         boolean goal = false;
         int counter = 0;
