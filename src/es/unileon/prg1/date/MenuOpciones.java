@@ -85,6 +85,7 @@ public class MenuOpciones{
                 date1 = generateDate(); 
 
                 date1.randomGenerate();
+                date1.randomGenerateDo();
             }
 
             else if (selector == 11) {

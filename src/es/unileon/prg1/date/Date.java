@@ -262,7 +262,7 @@ public class Date {
         }
     }
 
-    public void randomGenerate()throws DateException{
+     public void randomGenerate()throws DateException{
         boolean goal = false;
         int counter = 0;
         while (!goal){
@@ -277,6 +277,24 @@ public class Date {
             }
             counter ++;
         }
+        System.out.println("la fecha ha sido hacertada en "+ counter+ " intentos");
+    } 
+    
+    public void randomGenerateDo()throws DateException{
+        boolean goal = false;
+        int counter = 0;
+        do{
+            int day = 0,month = 0, year = this.year;
+            day = (int)(Math.random()*getDaysOfMonth() +1);
+            month = (int)(Math.random()* 12+1);
+            Date randomDate = new Date(day, month, year);
+            if (isSame(randomDate)){
+                goal = true;
+            }else{
+                goal = false;
+            }
+            counter ++;
+        }while (!goal);
         System.out.println("la fecha ha sido hacertada en "+ counter+ " intentos");
     }
 	public String toString() {
